@@ -193,14 +193,12 @@ func (m *Manager) openStandard(opts application.WebviewWindowOptions, screen *ap
 	opts.MaxWidth, opts.MaxHeight = maxW, maxH
 	opts.InitialPosition = application.WindowXY
 	opts.X, opts.Y = x, y
-	opts.Mac.TitleBar = overlayTitleBar
 	m.showWhenReady(m.app.Window.NewWithOptions(opts), nil)
 }
 
 func (m *Manager) openFull(opts application.WebviewWindowOptions, screen *application.Screen) {
 	opts.Width, opts.Height = screen.WorkArea.Width, screen.WorkArea.Height
 	opts.InitialPosition = application.WindowCentered
-	opts.Mac.TitleBar = overlayTitleBar
 	m.showWhenReady(m.app.Window.NewWithOptions(opts), nil)
 }
 
@@ -247,20 +245,12 @@ func (m *Manager) base(name, url string) application.WebviewWindowOptions {
 		ZoomControlEnabled:         false,
 		DevToolsEnabled:            !m.production,
 		DefaultContextMenuDisabled: m.production,
+		Mac:                        application.MacWindow{TitleBar: application.MacTitleBarDefault},
 		// Never use SystemDefault. With it, Wails reapplies the system's theme to the title bar
 		// every time the system's theme changes, replacing the theme that the app's settings
 		// force. New handles the system's changes for the windows that follow it.
 		Windows: application.WindowsWindow{Theme: windowsTheme(theme)},
 	}
-}
-
-// overlayTitleBar puts the traffic lights over the content, without the window's title. The
-// pages leave room for the traffic lights. Each window keeps its title for the Window menu and
-// Mission Control. It only applies on macOS: Windows and Linux show the title in their title bar.
-var overlayTitleBar = application.MacTitleBar{
-	AppearsTransparent: true,
-	FullSizeContent:    true,
-	HideTitle:          true,
 }
 
 // showWhenReady shows a window that was created hidden once its page has loaded the Wails

@@ -7,7 +7,6 @@ import { AnimatePresence, type HTMLMotionProps, motion, useReducedMotion } from 
 import type { ReactNode } from 'react'
 import { formatErrorMessage } from '../../../lib/errors'
 import { formatNumber } from '../../../lib/format'
-import { platform } from '../../../lib/shell'
 import { WINDOWS, type WindowLook } from '../../routes'
 import EmptyState from '../EmptyState'
 import { Panel } from '../look/Panel'
@@ -95,7 +94,7 @@ export function ListWindow<T extends { id: string }>({
     const items: readonly T[] = query.data ?? NONE
     const { search, setSearch, searching, shown } = useListSearch(items, fields)
     const rowMotion = useRowMotion()
-    const page = pageClass(platform() === 'macos')
+    const page = listWindowClass
     const words = listWords(look)
 
     if (query.isError) {
@@ -236,10 +235,7 @@ export function RowStatus({
     )
 }
 
-/** The page around a list window. On macOS it leaves room for the traffic lights. */
-export function pageClass(macos: boolean) {
-    return cn('relative flex flex-col h-screen', macos && 'pt-7')
-}
+export const listWindowClass = 'relative flex flex-col h-screen'
 
 /**
  * How a row enters and leaves the list. Rows that are there when the list loads don't animate

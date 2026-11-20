@@ -6,7 +6,6 @@ import { type ReactNode, useMemo } from 'react'
 import { configNameOf } from '../../../lib/paths'
 import { usePref } from '../../../lib/prefs'
 import { useRemoteHealth, useRemotes } from '../../../lib/remotes'
-import { platform } from '../../../lib/shell'
 import BackendIcon from '../BackendIcon'
 import { IconTile } from '../look/IconTile'
 import type { AllowedKey, RemoteString } from './types'
@@ -184,11 +183,7 @@ export default function RemoteSidebar({
             )}
         >
             <ScrollShadow
-                className={cn(
-                    'flex flex-col items-center w-full h-full gap-1 pb-3 overflow-y-auto',
-                    // On macOS the window's buttons sit in the top left corner, over the content.
-                    platform() === 'macos' ? 'pt-9' : 'pt-0.5'
-                )}
+                className="flex flex-col items-center w-full h-full gap-1 pt-0.5 pb-3 overflow-y-auto"
                 size={40}
             >
                 {canShowFavorites && (

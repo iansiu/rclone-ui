@@ -59,7 +59,7 @@ export default function Guides() {
 
     return (
         <KeyboardContext.Provider value={keyboard}>
-            <div className={cn('flex w-screen h-screen', platform() === 'macos' && 'pt-7')}>
+            <div className="flex w-screen h-screen">
                 <nav
                     aria-label={t`Guides`}
                     className="flex flex-col gap-3 py-4 pl-3 pr-2 border-r w-60 shrink-0 border-divider"

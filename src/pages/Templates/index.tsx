@@ -51,7 +51,13 @@ import {
 } from '../../../lib/templates'
 import { openHistory, runTemplate } from '../../../lib/transfers'
 import EmptyState from '../../components/EmptyState'
-import { LoadError, NoMatch, pageClass, SearchField, Steps } from '../../components/list/ListWindow'
+import {
+    LoadError,
+    listWindowClass,
+    NoMatch,
+    SearchField,
+    Steps,
+} from '../../components/list/ListWindow'
 import { matchAny } from '../../components/list/list'
 import { toneButton } from '../../components/look/buttons'
 import { IconTile } from '../../components/look/IconTile'
@@ -282,7 +288,7 @@ export default function Templates() {
         </>
     )
 
-    const page = pageClass(platform() === 'macos')
+    const page = listWindowClass
 
     // Don't show a list that failed to load as empty.
     if (templatesQuery.isError) {

@@ -1,6 +1,5 @@
 import { cn } from '@heroui/react'
 import { useState } from 'react'
-import { platform } from '../../../lib/shell'
 import { usePageQuery } from '../../route'
 import HistoryList from './HistoryList'
 import TransferDetails from './TransferDetails'
@@ -21,7 +20,7 @@ export default function History() {
     const toList = () => setView({ kind: 'list' })
     const toDetails = (id: string) => setView({ kind: 'details', id })
     return (
-        <div className={cn('relative flex flex-col h-screen', platform() === 'macos' && 'pt-7')}>
+        <div className="relative flex flex-col h-screen">
             {/* The list stays mounted under the other views, so Back finds it as it was. */}
             <div className={cn('flex flex-col flex-1 min-h-0', view.kind !== 'list' && 'hidden')}>
                 <HistoryList

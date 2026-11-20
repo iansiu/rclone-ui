@@ -1,14 +1,12 @@
 import { cn, DrawerFooter, DrawerHeader } from '@heroui/react'
 import { type ReactNode, type Ref, useLayoutEffect } from 'react'
-import { platform } from '../../lib/shell'
 import type { WindowLook } from '../routes'
 import { TONE_RGB } from './look/tones'
 import { WindowHeader } from './look/WindowHeader'
 
 /**
  * A window of the app's settings: Remotes, Notifications or Mobile & Remote Control. Its header
- * and an optional toolbar stay at the top, and the content scrolls below them. On macOS the title
- * bar lies over the window's top, so the window starts under it.
+ * and an optional toolbar stay at the top, and the content scrolls below them.
  */
 export default function SettingsWindow({
     look,
@@ -40,7 +38,7 @@ export default function SettingsWindow({
     }, [look.tone])
 
     return (
-        <div className={cn('flex flex-col w-screen h-screen', platform() === 'macos' && 'pt-7')}>
+        <div className="flex flex-col w-screen h-screen">
             <div className="px-6 pt-4 pb-4 shrink-0">
                 <div className="flex flex-col w-full max-w-3xl gap-4 mx-auto">
                     <WindowHeader
@@ -72,7 +70,7 @@ export const SHEET_COLUMN = 'w-full max-w-2xl mx-auto'
  * `tone-wash` draws the window's tone at its top, from the `--tone` that SettingsWindow sets.
  */
 export function sheetClass(className?: string) {
-    return cn('bg-content1 tone-wash', platform() === 'macos' && 'pt-5', className)
+    return cn('bg-content1 tone-wash', className)
 }
 
 export function SheetHeader({

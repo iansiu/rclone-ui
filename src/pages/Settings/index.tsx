@@ -1,6 +1,4 @@
-import { cn } from '@heroui/react'
 import { useEffect } from 'react'
-import { platform } from '../../../lib/shell'
 import { usePageQuery } from '../../route'
 import AboutHeader from './AboutHeader'
 import AgentsGroup from './AgentsGroup'
@@ -26,7 +24,7 @@ export default function Settings() {
     }, [asked])
 
     return (
-        <div className={cn('flex flex-col w-screen h-screen', platform() === 'macos' && 'pt-7')}>
+        <div className="flex flex-col w-screen h-screen">
             <div className="relative flex-1 min-h-0 overflow-y-auto overscroll-none">
                 <div className="flex flex-col w-full max-w-2xl px-8 pt-6 pb-16 mx-auto gap-9 max-[720px]:px-5">
                     <AboutHeader />

@@ -17,8 +17,7 @@ const (
 	// Standard is 840×725 (resizable from 650×500 to 1000×1000), and cascades from the windows
 	// that are already open.
 	Standard Shape = iota
-	// Full is the size of the screen's work area. On macOS its content extends under the title
-	// bar.
+	// Full is the size of the screen's work area.
 	Full
 	// Small is the startup screen. It is frameless, 800×500, not resizable and always on top.
 	Small
